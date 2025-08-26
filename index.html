@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Pocket Locket - 10 Games Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="mandala-pattern"></div>
+            <h1 class="splash-title">Retro Pocket Locket</h1>
+            <p class="splash-subtitle">Experience the magic of Indian culture through gaming</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main Hub -->
+    <div id="mainHub" class="main-hub hidden">
+        <header class="hub-header">
+            <h1 class="hub-title">🪔 Retro Pocket Locket 🪔</h1>
+            <p class="hub-subtitle">Choose your adventure from 10 authentic Indian games</p>
+            <div class="hub-controls">
+                <button id="settingsBtn" class="btn btn--secondary">⚙️ Settings</button>
+                <button id="scoresBtn" class="btn btn--secondary">🏆 High Scores</button>
+            </div>
+        </header>
+
+        <main class="games-grid">
+            <div class="game-card" data-game="brick-blaster">
+                <div class="game-icon">🧱</div>
+                <h3>Brick Blaster</h3>
+                <p>Break Bollywood-themed bricks with your dhol paddle</p>
+                <div class="game-meta">
+                    <span class="difficulty easy">Easy</span>
+                    <span class="category">Arcade</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="subway-sprinter">
+                <div class="game-icon">🚇</div>
+                <h3>Subway Sprinter</h3>
+                <p>Run through Indian railway stations avoiding obstacles</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Runner</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="rooftop-cricket">
+                <div class="game-icon">🏏</div>
+                <h3>Rooftop Cricket Smash</h3>
+                <p>Hit cricket balls across Mumbai rooftops</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Sports</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="fruit-slice-masala">
+                <div class="game-icon">🥭</div>
+                <h3>Fruit Slice Masala</h3>
+                <p>Slice Indian fruits with explosive masala effects</p>
+                <div class="game-meta">
+                    <span class="difficulty easy">Easy</span>
+                    <span class="category">Casual</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="racing-rickshaw">
+                <div class="game-icon">🛺</div>
+                <h3>Racing Rickshaw</h3>
+                <p>Race auto-rickshaws through busy Indian streets</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Racing</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="ludo-blitz">
+                <div class="game-icon">🎲</div>
+                <h3>Ludo Blitz</h3>
+                <p>Fast-paced Ludo with Indian sweet game pieces</p>
+                <div class="game-meta">
+                    <span class="difficulty easy">Easy</span>
+                    <span class="category">Board</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="snake-redux">
+                <div class="game-icon">🐍</div>
+                <h3>Snake Redux</h3>
+                <p>Classic snake with Indian foods and scenery</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Classic</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="memory-bollywood">
+                <div class="game-icon">🎬</div>
+                <h3>Memory Bollywood</h3>
+                <p>Match Bollywood movie posters and actors</p>
+                <div class="game-meta">
+                    <span class="difficulty easy">Easy</span>
+                    <span class="category">Puzzle</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="puzzle-rickshaw-rush">
+                <div class="game-icon">🧩</div>
+                <h3>Puzzle Rickshaw Rush</h3>
+                <p>Navigate city streets picking up passengers</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Puzzle</span>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="rangoli-tetris">
+                <div class="game-icon">🌸</div>
+                <h3>Rangoli Tetris</h3>
+                <p>Tetris with beautiful rangoli pattern blocks</p>
+                <div class="game-meta">
+                    <span class="difficulty medium">Medium</span>
+                    <span class="category">Puzzle</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer" class="game-container hidden">
+        <header class="game-header">
+            <button id="backToHub" class="btn btn--secondary">← Back to Hub</button>
+            <h2 id="currentGameTitle">Game Title</h2>
+            <div id="gameScore" class="game-score">Score: 0</div>
+        </header>
+        <div id="gameCanvas" class="game-canvas">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="gameControls" class="game-controls hidden">
+            <button id="gameStartBtn" class="btn btn--primary">Start Game</button>
+            <button id="gamePauseBtn" class="btn btn--secondary hidden">Pause</button>
+            <button id="gameResumeBtn" class="btn btn--primary hidden">Resume</button>
+        </div>
+        <div id="gameOverScreen" class="game-over-screen hidden">
+            <h3>Game Over!</h3>
+            <div id="finalScore">Final Score: 0</div>
+            <div class="game-over-controls">
+                <button id="playAgainBtn" class="btn btn--primary">Play Again</button>
+                <button id="backToHubFromGameOver" class="btn btn--secondary">Back to Hub</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button id="closeSettings" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Music Volume</label>
+                    <input type="range" id="musicVolume" class="form-control" min="0" max="100" value="70">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sound Effects Volume</label>
+                    <input type="range" id="sfxVolume" class="form-control" min="0" max="100" value="80">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Graphics Quality</label>
+                    <select id="graphicsQuality" class="form-control">
+                        <option value="high">High</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- High Scores Modal -->
+    <div id="scoresModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>High Scores</h3>
+                <button id="closeScores" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="highScoresList" class="high-scores-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
