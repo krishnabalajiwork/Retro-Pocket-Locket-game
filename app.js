@@ -1828,21 +1828,23 @@ class RangoliTetrisGame extends GameEngine {
         
         this.canvas.addEventListener('touchend', (e) => {
             e.preventDefault();
+            if (!touchStartX || !touchStartY) return;
+            
             const touchEndX = e.changedTouches[0].clientX;
             const touchEndY = e.changedTouches[0].clientY;
             const deltaX = touchEndX - touchStartX;
             const deltaY = touchEndY - touchStartY;
             
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                if (deltaX > 30) {
+                if (deltaX > 20) {
                     this.movePiece(1, 0);
-                } else if (deltaX < -30) {
+                } else if (deltaX < -20) {
                     this.movePiece(-1, 0);
                 }
             } else {
-                if (deltaY > 30) {
+                if (deltaY > 20) {
                     this.movePiece(0, 1);
-                } else if (deltaY < -30) {
+                } else if (deltaY < -20) {
                     this.rotatePiece();
                 }
             }
@@ -1981,26 +1983,8 @@ class RangoliTetrisGame extends GameEngine {
                     this.ctx.fillStyle = this.board[row][col];
                     this.ctx.fillRect(x, y, blockSize - 1, blockSize - 1);
                     this.ctx.strokeStyle = '#000';
+
                     this.ctx.strokeRect(x, y, blockSize - 1, blockSize - 1);
-                } else {
-                    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-                    this.ctx.strokeRect(x, y, blockSize, blockSize);
-                }
-            }
-        }
-        
-        // Current piece
-        if (this.currentPiece) {
-            this.ctx.fillStyle = this.currentPiece.color;
-            for (let row = 0; row < this.currentPiece.shape.length; row++) {
-                for (let col = 0; col < this.currentPiece.shape[row].length; col++) {
-                    if (this.currentPiece.shape[row][col]) {
-                        const x = offsetX + (this.currentPiece.x + col) * blockSize;
-                        const y = offsetY + (this.currentPiece.y + row) * blockSize;
-                        this.ctx.fillRect(x, y, blockSize - 1, blockSize - 1);
-                        this.ctx.strokeStyle = '#000';
-                        this.ctx.strokeRect(x, y, blockSize - 1, blockSize - 1);
-                    }
                 }
             }
         }
@@ -2014,6 +1998,7 @@ class RangoliTetrisGame extends GameEngine {
         this.drawText('↑ Rotate', 550, 260, '14px Arial', '#FFF', 'center');
     }
 }
+                
 
 // Game Manager
 class GameManager {
